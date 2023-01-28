@@ -8,7 +8,7 @@ form, fieldset, input, textarea, p, blockquote, th, td, span {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 fieldset, img {
@@ -41,4 +41,5 @@ body {
     letter-spacing: 1.1px;
     overflow-x: hidden;
     font-family: "Inter", sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    height: 100%;
 }

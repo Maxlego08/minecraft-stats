@@ -1,0 +1,16 @@
+footer {
+
+    position: fixed;
+    bottom: 0;
+    height:75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        padding: 0 5px;
+    }
+
+
+}
