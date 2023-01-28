@@ -1,0 +1,82 @@
+/** Server status css **/
+.server-status {
+    margin-left: 0;
+    margin-top: -2px;
+    vertical-align: middle;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.server-status::before,
+.server-status::after {
+    margin-left: -15px;
+    margin-top: 7px;
+    position: absolute;
+    vertical-align: middle;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.server-status[type="up"],
+.server-status[type="up"]::before,
+.server-status[type="up"]::after {
+    background: #2ECC71;
+}
+
+.server-status[type="down"],
+.server-status[type="down"]::before,
+.server-status[type="down"]::after {
+    background: #E74C3C;
+}
+
+.server-status[type="slow"],
+.server-status[type="slow"]::before,
+.server-status[type="slow"]::after {
+    background: #F1C40F;
+}
+
+.server-status::before {
+    content: "";
+    animation: bounce 1.5s infinite;
+}
+
+.server-status::after {
+    content: "";
+    animation: bounce 1.5s -0.4s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes bounce {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.server-status-view {
+
+    &:before, &:after {
+        margin-left: -20px;
+        margin-top: 9px;
+    }
+}
