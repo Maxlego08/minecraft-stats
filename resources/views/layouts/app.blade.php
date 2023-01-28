@@ -15,6 +15,8 @@
     <meta property="og:site_name" content="Minecraft Stats">
     @stack('meta')
 
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
