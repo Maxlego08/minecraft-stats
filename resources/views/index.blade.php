@@ -1,12 +1,14 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.app')
 
-@section('title', 'Servers')
+@section('title', 'Serveurs')
 
 @section('content')
 
     <div class="servers">
         @foreach($servers as $server)
-            <div class="server" id="server-{{ $server->id }}">
+            <a class="server" id="server-{{ $server->id }}"
+               href="{{ route('server', ['name' => Str::slug($server->name), 'server' => $server]) }}">
                 <div class="server-icon">
                     <img src="{{ $server->getIcon() }}" height="50" width="50" alt="server icon">
                 </div>
@@ -20,7 +22,7 @@
                         <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
                     </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
 

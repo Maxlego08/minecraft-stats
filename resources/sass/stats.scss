@@ -1,0 +1,39 @@
+.stats {
+
+    &-header {
+
+        background: white;
+        height: 100px;
+        box-shadow: rgba(149, 157, 165, 0.3) 0 8px 24px;
+        display: flex;
+        align-items: center;
+
+        &-content {
+            display: flex;
+        }
+
+        .header-name {
+            display: flex;
+            flex-direction: column;
+
+            &-name {
+                font-size: 1.3em;
+            }
+
+            &-ip {
+                font-size: 0.8em;
+                text-transform: uppercase;
+                color: #2d2d36;
+            }
+
+        }
+
+        .header-online {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+    }
+
+
+}
