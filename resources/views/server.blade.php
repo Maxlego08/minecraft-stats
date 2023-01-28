@@ -20,9 +20,16 @@
         </div>
         <div class="container">
             <div>
-
+                <canvas id="stats" data-url="{{ route('stats.days', $server) }}"></canvas>
             </div>
         </div>
     </div>
 
 @endsection
+
+@push('footer-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js"
+            integrity="sha512-qKyIokLnyh6oSnWsc5h21uwMAQtljqMZZT17CIMXuCQNIfFSFF4tJdMOaJHL9fQdJUANid6OB6DRR0zdHrbWAw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @vite(['resources/js/stats.js'])
+@endpush
