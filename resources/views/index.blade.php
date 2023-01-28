@@ -16,7 +16,7 @@
                         <span class="server-informations-ip">{{ $server->ip }}</span>
                     </div>
                     <div class="server-ip">
-                        <span class="server-status" type="up"></span>
+                        <span class="server-status" type="{{ $server->is_online ? "up" : "down" }}"></span>
                         <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
                     </div>
                 </div>
