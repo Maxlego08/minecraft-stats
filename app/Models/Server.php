@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property boolean $is_online
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Carbon $online_record_players_at
  *
  * @method static Server find(int $id)
  */
@@ -30,7 +31,13 @@ class Server extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ip', 'port', 'icon', 'description', 'version', 'is_online', 'online_record_players', 'max_players', 'name'
+        'ip', 'port', 'icon', 'description', 'version', 'is_online', 'online_record_players', 'max_players', 'name', 'online_record_players_at'
+    ];
+
+    protected $dates = [
+        'online_record_players_at',
+        'created_at',
+        'updated_at',
     ];
 
     /**

@@ -14,8 +14,13 @@
                     <span class="header-name-ip">{{ $server->ip }}</span>
                 </div>
                 <div class="header-online">
-                    <span class="server-status" type="{{ $server->is_online ? "up" : "down" }}"></span>
-                    <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
+                    <div class="header-online-top">
+                        <span class="server-status" type="{{ $server->is_online ? "up" : "down" }}"></span>
+                        <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
+                    </div>
+                    <div class="header-online-bottom">
+                        <span>Record: {{ $server->online_record_players }} ({{ format_date($server->online_record_players_at) }})</span>
+                    </div>
                 </div>
             </div>
         </div>
