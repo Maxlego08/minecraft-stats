@@ -31,14 +31,17 @@ class ServerController extends Controller
     public function stats(Server $server): array
     {
         $values = [];
-        $date = now()->subDays(2)->startOfDay();
+        $date = now()->subDays(1)->startOfDay();
         while ($date->isPast()) {
 
             $startAt = $date->clone();
             $endAt = $date->clone()->addMinutes(10);
 
             $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
-            $values[$startAt->format('Y-m-d H:i')] = (int)$currentValues;
+            // $values[$startAt->format('Y-m-d H:i')] = (int)$currentValues;
+            $values[] = [
+                $startAt->timestamp, (int)$currentValues
+            ];
 
             $date = $date->addMinutes(10);
         }

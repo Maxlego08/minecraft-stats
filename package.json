@@ -12,6 +12,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "apexcharts": "^3.36.3",
         "chart.js": "^4.2.0",
         "sass": "^1.57.1"
     }
