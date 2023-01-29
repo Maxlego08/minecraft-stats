@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/{name}.{server}', [ServerController::class, 'index'])->name('server');
 Route::prefix('/stats/{server}/')->name('stats.')->group(function () {
-    Route::post('/month', [ServerController::class, 'stats'])->name('days');
+    Route::post('/global/{days}', [ServerController::class, 'stats'])->name('global');
 });

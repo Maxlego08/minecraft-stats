@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 
 class ServerController extends Controller
 {
+    const DAYS = [2, 7, 14, 30];
+
     /**
      * Show server information
      *
@@ -28,17 +30,28 @@ class ServerController extends Controller
         ]);
     }
 
-    public function stats(Server $server): array
+    /**
+     * Display statistics on days
+     *
+     * @param Server $server
+     * @param int $days
+     * @return array
+     */
+    public function stats(Server $server, int $days): array
     {
+
+        if (!in_array($days, self::DAYS)){
+            $days = 1;
+        }
+
         $values = [];
-        $date = now()->subDays(2)->startOfDay();
+        $date = now()->subDays($days)->startOfDay();
         while ($date->isPast()) {
 
             $startAt = $date->clone();
             $endAt = $date->clone()->addMinutes(10);
 
             $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
-            // $values[$startAt->format('Y-m-d H:i')] = (int)$currentValues;
             $values[] = [
                 $startAt->timestamp * 1000, (int)$currentValues
             ];

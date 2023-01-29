@@ -71,6 +71,41 @@
             height: 515px;
         }
 
+        &-buttons {
+
+            margin: 25px;
+            padding-bottom: 25px;
+
+            .button {
+
+                margin: 5px;
+                padding: 10px;
+                border-radius: 3px;
+                background: whitesmoke;
+                cursor: pointer;
+                transition-duration: .2s;
+
+                &:hover{
+                    background: #dedcdc;
+                }
+
+                &-selected {
+                    background: #eae8e8;
+                }
+
+                &-disable {
+                    background: #c5c5c5;
+                    cursor: not-allowed;
+
+                    &:hover{
+                        background: #c0c0c0;
+                    }
+                }
+
+            }
+
+        }
+
     }
 
 }
