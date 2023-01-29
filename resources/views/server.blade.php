@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $server->name)
+@section('description', 'Statistiques du serveur ' . $server->name)
 
 @section('content')
 

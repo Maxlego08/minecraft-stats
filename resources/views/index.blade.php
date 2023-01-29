@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('title', 'Serveurs')
+@section('description', 'Liste des serveurs')
 
 @section('content')
 

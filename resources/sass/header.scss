@@ -1,0 +1,24 @@
+header {
+
+    height: 75px;
+    background: #1F1F33;
+
+    .header {
+
+        display: flex;
+        align-items: center;
+        height: 100%;
+        color: white;
+
+        &-title {
+            color: white;
+            text-transform: uppercase;
+            font-size: 1.5em;
+        }
+
+        .right {
+            margin-right: 0;
+            margin-left: auto;
+        }
+    }
+}

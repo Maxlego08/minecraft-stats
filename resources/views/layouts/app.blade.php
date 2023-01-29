@@ -11,7 +11,7 @@
     <meta property="og:type" content="@yield('type', 'website')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="">
-    <meta property="og:description" content="@yield('description', 'Server Minecraft Stats'))">
+    <meta property="og:description" content="@yield('description', 'Server Minecraft Stats')">
     <meta property="og:site_name" content="Minecraft Stats">
     @stack('meta')
 
