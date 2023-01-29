@@ -139,7 +139,7 @@ window.addEventListener('load', function () {
 
     buttons.forEach(element => {
         element.addEventListener('click', async function () {
-            
+
             if (current != null && element === current) return
             if (isFetching) return
 
