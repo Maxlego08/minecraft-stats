@@ -10,7 +10,8 @@
         <div class="stats-header">
             <div class="container stats-header-content">
                 <div class="header-name">
-                    <span class="header-name-name"><a href="{{ route('server', ['name' => Str::slug($server->name), 'server' => $server]) }}">{{ $server->name }}</a></span>
+                    <span class="header-name-name"><a
+                            href="{{ route('server', ['name' => Str::slug($server->name), 'server' => $server]) }}">{{ $server->name }}</a></span>
                     <span class="header-name-ip">{{ $server->ip }}</span>
                 </div>
                 <div class="header-online">
@@ -25,9 +26,16 @@
             </div>
         </div>
         <div class="container">
-            <div>
-                <!--<canvas id="stats" data-url="{{ route('stats.days', $server) }}"></canvas>-->
-                <div id="stats" data-url="{{ route('stats.days', $server) }}"></div>
+            <div class="card">
+                <span class="card-title">Nombre de joueurs sur le serveur {{ $server->name }}</span>
+                <div class="global-stats" id="stats" data-url="{{ route('stats.days', $server) }}">
+                    <div id="stats-loader" class="card-stats-loader">
+                        <div class="lds-ripple">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

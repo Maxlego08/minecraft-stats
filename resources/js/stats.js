@@ -14,6 +14,8 @@ window.addEventListener('load', function () {
             _token: csrf,
         }
     }).then(function (response) {
+        let elementLoader = document.getElementById('stats-loader')
+        elementLoader.remove()
         createApexChar(element, response.data)
     });
 
