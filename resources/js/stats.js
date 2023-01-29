@@ -67,20 +67,20 @@ window.addEventListener('load', function () {
             xaxis: {
                 type: 'datetime',
                 labels: {
-                    format: 'dd MMM',
+                    show: true,
                     datetimeFormatter: {
                         year: 'yyyy',
                         month: 'MMM \'yy',
                         day: 'dd MMM',
                         hour: 'HH:mm'
-                    }
+                    },
                 }
             },
             tooltip: {
                 shared: false,
                 x: {
                     show: true,
-                    format: 'dd MMM hh:mm',
+                    format: 'dd MMMM HH:mm',
                 },
             }
         };

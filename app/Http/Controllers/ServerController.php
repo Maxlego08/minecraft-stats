@@ -40,7 +40,7 @@ class ServerController extends Controller
             $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
             // $values[$startAt->format('Y-m-d H:i')] = (int)$currentValues;
             $values[] = [
-                $startAt->timestamp, (int)$currentValues
+                $startAt->timestamp * 1000, (int)$currentValues
             ];
 
             $date = $date->addMinutes(10);
