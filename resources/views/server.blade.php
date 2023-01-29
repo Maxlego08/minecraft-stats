@@ -19,7 +19,7 @@
                         <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
                     </div>
                     <div class="header-online-bottom">
-                        <span>Record: {{ $server->online_record_players }} ({{ format_date($server->online_record_players_at) }})</span>
+                        <span>Record: {{ $server->online_record_players }} ({{ format_date($server->online_record_players_at, true) }})</span>
                     </div>
                 </div>
             </div>

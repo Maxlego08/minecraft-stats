@@ -62,8 +62,9 @@ class PingServer implements ShouldQueue
 
         $server->update([
             'is_online' => $isOnline,
-            'max_players' => max($max, $server->max_players),
+            'max_players' => $max == 0 ? $server->max_players : $max,
             'online_record_players' => max($online, $server->online_record_players),
+            'online_record_players_at' => $online > $server->online_record_players ? now() : $server->online_record_players_at,
         ]);
     }
 
