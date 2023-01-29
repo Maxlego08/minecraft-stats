@@ -21,7 +21,8 @@
         </div>
         <div class="container">
             <div>
-                <canvas id="stats" data-url="{{ route('stats.days', $server) }}"></canvas>
+                <!--<canvas id="stats" data-url="{{ route('stats.days', $server) }}"></canvas>-->
+                <div id="stats" data-url="{{ route('stats.days', $server) }}"></div>
             </div>
         </div>
     </div>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Chart from 'chart.js/auto';
 
+import ApexCharts from 'apexcharts'
+
 window.addEventListener('load', function () {
 
     let element = document.getElementById('stats')
@@ -14,9 +16,78 @@ window.addEventListener('load', function () {
             _token: csrf,
         }
     }).then(function (response) {
-        console.log(response.data)
-        createLineChart('stats', response.data, 'Joueurs en ligne')
+        // createLineChart('stats', response.data, 'Joueurs en ligne')
+        createApexChar(element, response.data)
     });
+
+    function createApexChar(element, data){
+
+        console.log(data)
+
+        var options = {
+            series: [{
+                name: 'Joueurs en ligne',
+                data: data
+            }],
+            chart: {
+                type: 'area',
+                stacked: false,
+                height: 500,
+                zoom: {
+                    type: 'x',
+                    enabled: true,
+                    autoScaleYaxis: true
+                },
+                toolbar: {
+                    autoSelected: 'zoom'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            markers: {
+                size: 0,
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    opacityFrom: 0,
+                    opacityTo: 0,
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Joueurs'
+                },
+            },
+            xaxis: {
+                type: 'datetime',
+                labels: {
+                    format: 'dd MMM',
+                    datetimeFormatter: {
+                        year: 'yyyy',
+                        month: 'MMM \'yy',
+                        day: 'dd MMM',
+                        hour: 'HH:mm'
+                    }
+                }
+            },
+            tooltip: {
+                shared: false,
+                x: {
+                    show: true,
+                    format: 'dd MMM hh:mm',
+                },
+            }
+        };
+
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    }
 
 })
 
