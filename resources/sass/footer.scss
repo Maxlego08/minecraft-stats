@@ -8,6 +8,18 @@ footer {
     justify-content: center;
     align-items: center;
 
+    @media screen and (max-width: 700px) {
+        position: relative;
+        bottom: 0;
+    }
+
+    @media screen and (max-width: 520px) {
+        position: relative;
+        bottom: 0;
+        flex-wrap: wrap;
+        padding-top: 25px;
+    }
+
     span {
         padding: 0 5px;
     }

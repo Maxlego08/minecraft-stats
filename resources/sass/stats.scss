@@ -10,6 +10,10 @@
 
         &-content {
             display: flex;
+
+            @media screen and (max-width: 520px) {
+                flex-direction: column;
+            }
         }
 
         .header-name {
@@ -75,6 +79,11 @@
 
             margin: 25px;
             padding-bottom: 25px;
+
+            @media screen and (max-width: 520px) {
+                display: flex;
+                flex-wrap: wrap;
+            }
 
             .button {
 
