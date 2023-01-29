@@ -10,7 +10,7 @@
         <div class="stats-header">
             <div class="container stats-header-content">
                 <div class="header-name">
-                    <span class="header-name-name">{{ $server->name }}</span>
+                    <span class="header-name-name"><a href="{{ route('server', ['name' => Str::slug($server->name), 'server' => $server]) }}">{{ $server->name }}</a></span>
                     <span class="header-name-ip">{{ $server->ip }}</span>
                 </div>
                 <div class="header-online">
