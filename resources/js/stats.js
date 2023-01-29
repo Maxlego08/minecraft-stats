@@ -62,6 +62,7 @@ window.addEventListener('load', function () {
             xaxis: {
                 type: 'datetime',
                 labels: {
+                    datetimeUTC: false,
                     show: true,
                     datetimeFormatter: {
                         year: 'yyyy',
