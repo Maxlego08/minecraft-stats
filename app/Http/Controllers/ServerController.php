@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Charts\Charts;
 use App\Models\Server;
-use App\Models\ServerPlayer;
 use App\Models\ServerStats;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ServerController extends Controller
@@ -45,6 +45,19 @@ class ServerController extends Controller
      */
     public function stats(Server $server, int $days): array
     {
+        return self::calcCharts($server, $days, false);
+    }
+
+    /**
+     * Allows you to calculate tanks, or to use the cache
+     *
+     * @param Server $server
+     * @param int $days
+     * @param bool $forceCalc
+     * @return array
+     */
+    public static function calcCharts(Server $server, int $days, bool $forceCalc): array
+    {
 
         if (!in_array($days, self::DAYS)) {
             $days = 2;
@@ -52,13 +65,22 @@ class ServerController extends Controller
 
         $minutes = self::DAYS_MINUTES[$days];
 
+        $key = $server->getCacheKey($days);
+        if (!$forceCalc && Cache::has($key)) {
+            return Cache::get($key);
+        }
+
         $values = [];
         $date = now()->subDays($days)->startOfDay();
+
+        // $data = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$date, now()])->get();
+
         while ($date->isPast()) {
 
             $startAt = $date->clone();
             $endAt = $date->clone()->addMinutes($minutes);
 
+            // $currentValues = $data->whereBetween('created_at', [$startAt, $endAt])->avg('online');
             $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
             $values[] = [
                 $startAt->timestamp * 1000, (int)$currentValues
@@ -66,7 +88,9 @@ class ServerController extends Controller
 
             $date = $date->addMinutes($minutes);
         }
+        Cache::put($key, $values, now()->addMinutes(10));
         return $values;
+
     }
 
 }

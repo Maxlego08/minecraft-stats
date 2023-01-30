@@ -66,6 +66,8 @@ class PingServer implements ShouldQueue
             'online_record_players' => max($online, $server->online_record_players),
             'online_record_players_at' => $online > $server->online_record_players ? now() : $server->online_record_players_at,
         ]);
+
+        CacheCharts::dispatch($server->id);
     }
 
 }

@@ -65,4 +65,15 @@ class Server extends Model
         return $stats->online ?? 0;
     }
 
+    /**
+     * Get cache key
+     *
+     * @param int $days
+     * @return string
+     */
+    function getCacheKey(int $days): string
+    {
+        return "{$this->id}_days_$days";
+    }
+
 }
