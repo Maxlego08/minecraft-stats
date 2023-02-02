@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/compare', [ServerController::class, 'compare'])->name('compare');
+Route::post('/compare', [ServerController::class, 'globalStats'])->name('compares');
 Route::get('/{name}.{server}', [ServerController::class, 'index'])->name('server');
 Route::prefix('/stats/{server}/')->name('stats.')->group(function () {
     Route::post('/global/{days}', [ServerController::class, 'stats'])->name('global');

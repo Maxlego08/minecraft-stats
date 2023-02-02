@@ -37,6 +37,23 @@ class ServerController extends Controller
     }
 
     /**
+     * Compare page
+     *
+     * @return Factory|View|Application
+     */
+    public function compare(): Factory|View|Application
+    {
+        $servers = Server::all();
+        $online = 0;
+        foreach ($servers as $server) {
+            $online += $server->currentOnline();
+        }
+        return view('compare', [
+            'online' => $online,
+        ]);
+    }
+
+    /**
      * Display statistics on days
      *
      * @param Server $server
@@ -46,6 +63,25 @@ class ServerController extends Controller
     public function stats(Server $server, int $days): array
     {
         return self::calcCharts($server, $days, false);
+    }
+
+    /**
+     * Get global stats
+     *
+     * @param Server $server
+     * @return array
+     */
+    public function globalStats(Server $server): array
+    {
+        $servers = Server::all();
+        $stats = [];
+        foreach ($servers as $server) {
+            $stats[] = [
+                'name' => $server->name,
+                'data' => $this->stats($server, 2),
+            ];
+        }
+        return $stats;
     }
 
     /**
@@ -71,7 +107,7 @@ class ServerController extends Controller
         }
 
         $values = [];
-        $date = now()->subDays($days)->startOfDay();
+        $date = now()->subDays($days);
 
         // $data = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$date, now()])->get();
 

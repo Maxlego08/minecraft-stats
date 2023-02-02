@@ -6,7 +6,6 @@
 @section('content')
 
     <div class="stats">
-
         <div class="stats-header">
             <div class="container stats-header-content">
                 <div class="header-name">
