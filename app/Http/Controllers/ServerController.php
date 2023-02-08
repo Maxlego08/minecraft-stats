@@ -107,7 +107,7 @@ class ServerController extends Controller
         }
 
         $values = [];
-        $date = now()->subDays($days);
+        $date = now()->subDays($days)->startOfHour();
 
         // $data = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$date, now()])->get();
 
