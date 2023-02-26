@@ -78,7 +78,7 @@ class ServerController extends Controller
         foreach ($servers as $server) {
             $stats[] = [
                 'name' => $server->name,
-                'data' => $this->stats($server, 2),
+                'data' => $this->stats($server, 7),
             ];
         }
         return $stats;

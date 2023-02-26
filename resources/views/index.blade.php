@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="servers">
+    <div class="servers container">
         @foreach($servers as $server)
             <a class="server" id="server-{{ $server->id }}"
                href="{{ route('server', ['name' => Str::slug($server->name), 'server' => $server]) }}">

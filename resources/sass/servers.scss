@@ -1,18 +1,24 @@
 .servers {
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     margin-top: 50px;
 
     .server {
 
-        margin-bottom: 20px;
         padding: 15px;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px;
         display: flex;
         min-width: 275px;
+        margin: 15px;
+
+        @media screen and (max-width: 280px) {
+            min-width: 225px;
+            margin: 5px 0;
+        }
 
         &-icon {
 
@@ -25,6 +31,11 @@
         &-description {
             width: 100%;
             display: flex;
+
+            @media screen and (max-width: 280px) {
+                flex-wrap: wrap-reverse;
+            }
+
         }
 
         &-informations {
