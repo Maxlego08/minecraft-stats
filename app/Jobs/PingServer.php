@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\ServerController;
 use App\Models\Server;
 use App\Models\ServerPlayer;
 use App\Models\ServerStats;
@@ -67,7 +68,9 @@ class PingServer implements ShouldQueue
             'online_record_players_at' => $online > $server->online_record_players ? now() : $server->online_record_players_at,
         ]);
 
-        CacheCharts::dispatch($server->id);
+        foreach (ServerController::DAYS as $day) {
+            CacheCharts::dispatch($server->id, $day);
+        }
     }
 
 }
