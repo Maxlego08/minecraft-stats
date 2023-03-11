@@ -1,0 +1,296 @@
+.form-group {
+
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+    .form-label {
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        text-transform: uppercase;
+    }
+
+    .form-input,
+    form-input:focus {
+
+        background-color: white;
+        border-radius: 2px;
+        border: 1px solid black;
+        padding: 5px 10px;
+        outline: none;
+        -webkit-appearance: none;
+        height: 100%;
+        width: auto;
+        color: black;
+        font-size: 1.1em;
+
+    }
+
+    .form-input:-webkit-autofill,
+    .form-input:-webkit-autofill:hover,
+    .form-input:-webkit-autofill:focus,
+    .form-input:-webkit-autofill:active {
+        transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s;
+        -webkit-box-shadow: 0 0 0 1000px $color-tertiary inset;
+    }
+
+    .invalid,
+    .invalid:hover,
+    .invalid:focus,
+    .invalid:-webkit-autofill,
+    .invalid:-webkit-autofill:hover,
+    .invalid:-webkit-autofill:focus,
+    .invalid:-webkit-autofill:active {
+        border: solid 1px $border-error;
+    }
+
+    .valid,
+    .valid:hover,
+    .valid:focus,
+    .valid:-webkit-autofill,
+    .valid:-webkit-autofill:hover,
+    .valid:-webkit-autofill:focus,
+    .valid:-webkit-autofill:active {
+        border: solid 1px $border-success;
+    }
+
+    .form-errors {
+        color: $border-error;
+        margin-top: 5px;
+        font-size: .8em;
+    }
+
+    .form-success {
+        color: $border-success;
+        margin-top: 5px;
+        font-size: .8em;
+    }
+
+    .form-password {
+        color: whitesmoke;
+        margin-top: 5px;
+        font-size: .8em;
+    }
+
+    input[type="checkbox"].form-checkbox {
+        display: none;
+    }
+
+    input[type="checkbox"].form-checkbox + label::before {
+        font-family: "Font Awesome 5 Free";
+        content: '\f0c8';
+        font-size: 1.2em;
+        color: white;
+        margin-right: 0.3rem;
+    }
+
+    input[type="checkbox"].form-checkbox:checked + label::before {
+        content: '\f14a';
+        color: white;
+    }
+
+
+    input[type="file"] {
+        @media screen and (max-width: 570px) {
+            width: calc(100% - 30px);
+        }
+    }
+
+    .form-images {
+
+        .image-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .image-upload {
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            &-input {
+
+                margin: 10px 0;
+                position: relative;
+                text-align: center;
+
+                span {
+                    position: relative;
+                    z-index: 0;
+                    display: inline-block;
+                    width: 100%;
+                    border: 2px solid $color-secondary;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    color: #fff;
+                    padding: 5px 25px;
+                    text-transform: uppercase;
+                }
+
+                input {
+
+                    display: inline-block;
+                    position: absolute;
+                    z-index: 1;
+                    width: 100%;
+                    height: 50px;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    cursor: pointer;
+
+                }
+
+            }
+
+        }
+
+        .image-media {
+
+            display: flex;
+            align-items: center;
+            margin: 5px 5px;
+
+            a {
+
+                width: 150px;
+                background: lighten($color-primary-light, 5);
+                height: 82px;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+
+            }
+
+            &-description {
+
+                margin-left: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                a {
+                    color: white;
+                    margin-bottom: 5px;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                span {
+
+                    padding: 5px 20px;
+                    background: $color-primary;
+                    border: 1px solid $color-secondary;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-align: center;
+
+                }
+            }
+
+        }
+
+    }
+
+    .form-radio {
+
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .radio {
+
+            background-color: $color-tertiary;
+            margin: 0 5px;
+            padding: 15px 30px;
+            border-radius: 5px;
+            width: 250px;
+
+            @media screen and (max-width: 1520px) {
+                margin: 5px;
+            }
+
+            @media screen and (max-width: 380px) {
+                width: 100%;
+            }
+
+            label {
+                font-size: 20px;
+            }
+
+            p {
+                margin-top: 10px;
+            }
+
+            input {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+
+                border-radius: 50%;
+                width: 18px;
+                height: 18px;
+
+                border: 2px solid #999;
+                transition: 0.2s all linear;
+                margin-right: 5px;
+
+                position: relative;
+                top: 2px;
+            }
+
+            input:checked {
+                border: 2px solid $color-senary;
+                filter: drop-shadow(0px 0px 5px $color-senary);
+            }
+
+        }
+
+    }
+
+    select {
+        width: 100% !important;
+    }
+
+}
+
+.progress {
+    margin: 10px 0;
+    padding: 0;
+    width: 130%;
+    height: 5px;
+    overflow: hidden;
+    background: #e5e5e5;
+    border-radius: 6px;
+    display: none;
+}
+
+.bar {
+    position: relative;
+    float: left;
+    min-width: 0;
+    height: 100%;
+    background: cornflowerblue;
+    transition: 0.2s;
+}
+
+.percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 12px;
+    color: white;
+}
+
+#bbcodePreview {
+    img {
+        max-width: 100%;
+    }
+}

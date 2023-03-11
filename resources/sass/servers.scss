@@ -11,9 +11,9 @@
         padding: 15px;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px;
+        margin: 15px;
         display: flex;
         min-width: 275px;
-        margin: 15px;
 
         @media screen and (max-width: 280px) {
             min-width: 225px;

@@ -10,6 +10,10 @@ header {
         height: 100%;
         color: white;
 
+        @media screen and (max-width: 520px) {
+            flex-direction: column;
+        }
+
         &-title {
             color: white;
             text-transform: uppercase;
@@ -21,6 +25,16 @@ header {
 
             @media screen and (max-width: 340px) {
                 font-size: 1em;
+            }
+
+            &-sub {
+                font-size: 1.1em;
+                color: white;
+                text-transform: uppercase;
+
+                @media screen and (max-width: 340px) {
+                    font-size: 1em;
+                }
             }
         }
 

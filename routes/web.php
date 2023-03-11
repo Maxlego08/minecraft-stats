@@ -22,3 +22,7 @@ Route::get('/{name}.{server}', [ServerController::class, 'index'])->name('server
 Route::prefix('/stats/{server}/')->name('stats.')->group(function () {
     Route::post('/global/{days}', [ServerController::class, 'stats'])->name('global');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
