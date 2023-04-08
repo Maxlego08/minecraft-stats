@@ -12,7 +12,8 @@ window.addEventListener('load', function () {
     let elementButton7 = document.getElementById('global-7')
     let elementButton14 = document.getElementById('global-14')
     let elementButton30 = document.getElementById('global-30')
-    let buttons = [elementButton2, elementButton7, elementButton14, elementButton30,]
+    let elementButtonAll = document.getElementById('global-all')
+    let buttons = [elementButton2, elementButton7, elementButton14, elementButton30, elementButtonAll]
 
     let current
     let csrf = document.querySelector('meta[name="csrf-token"]').content;

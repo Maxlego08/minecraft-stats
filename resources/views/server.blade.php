@@ -41,6 +41,7 @@
                     <span class="button" id="global-7" data-url="{{ route('stats.global', ['server' => $server,  'days' => 7]) }}">7 jours</span>
                     <span class="button" id="global-14" data-url="{{ route('stats.global', ['server' => $server,  'days' => 14]) }}">14 jours</span>
                     <span class="button" id="global-30" data-url="{{ route('stats.global', ['server' => $server,  'days' => 30]) }}">30 jours</span>
+                    <span class="button" id="global-all" data-url="{{ route('stats.global', ['server' => $server,  'days' => 'all']) }}">Depuis le début</span>
                 </div>
             </div>
         </div>
