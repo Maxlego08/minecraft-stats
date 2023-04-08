@@ -15,12 +15,7 @@ use Illuminate\Support\Str;
 class ServerController extends Controller
 {
     const DAYS = [2, 7, 14, 30];
-    const DAYS_MINUTES = array(
-        2 => 10,
-        7 => 10,
-        14 => 20,
-        30 => 30
-    );
+    const DAYS_MINUTES = array(2 => 10, 7 => 10, 14 => 20, 30 => 30);
 
     /**
      * Show server information
@@ -31,9 +26,7 @@ class ServerController extends Controller
      */
     public function index(string $name, Server $server): Factory|View|Application
     {
-        return view('server', [
-            'server' => $server,
-        ]);
+        return view('server', ['server' => $server,]);
     }
 
     /**
@@ -48,21 +41,7 @@ class ServerController extends Controller
         foreach ($servers as $server) {
             $online += $server->currentOnline();
         }
-        return view('compare', [
-            'online' => $online,
-        ]);
-    }
-
-    /**
-     * Display statistics on days
-     *
-     * @param Server $server
-     * @param int $days
-     * @return array
-     */
-    public function stats(Server $server, int $days): array
-    {
-        return self::calcCharts($server, $days, false);
+        return view('compare', ['online' => $online,]);
     }
 
     /**
@@ -76,12 +55,58 @@ class ServerController extends Controller
         $servers = Server::all();
         $stats = [];
         foreach ($servers as $server) {
-            $stats[] = [
-                'name' => $server->name,
-                'data' => $this->stats($server, 7),
-            ];
+            $stats[] = ['name' => $server->name, 'data' => $this->stats($server, 7),];
         }
         return $stats;
+    }
+
+    /**
+     * Display statistics on days
+     *
+     * @param Server $server
+     * @param string $days
+     * @return array
+     */
+    public function stats(Server $server, string $days): array
+    {
+        if ($days === 'all') {
+            return self::calcAll($server, false);
+        }
+        return self::calcCharts($server, $days, false);
+    }
+
+    /**
+     * Calc all stats
+     *
+     * @param Server $server
+     * @param bool $forceCalc
+     * @return array|mixed
+     */
+    public static function calcAll(Server $server, bool $forceCalc): mixed
+    {
+        $key = $server->getCacheKey('all');
+        if (!$forceCalc && Cache::has($key)) {
+            return Cache::get($key);
+        }
+
+        $date = ServerStats::where('server_id', $server->id)->orderBy('created_at', 'ASC')->first()->created_at;
+        $values = [];
+
+        // $data = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$date, now()])->get();
+
+        while ($date->isPast()) {
+
+            $startAt = $date->clone();
+            $endAt = $date->clone()->addHours();
+
+            // $currentValues = $data->whereBetween('created_at', [$startAt, $endAt])->avg('online');
+            $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
+            $values[] = [$startAt->timestamp * 1000, (int)$currentValues];
+
+            $date = $date->addHours();
+        }
+        Cache::put($key, $values, now()->addMinutes(10));
+        return $values;
     }
 
     /**
@@ -118,9 +143,7 @@ class ServerController extends Controller
 
             // $currentValues = $data->whereBetween('created_at', [$startAt, $endAt])->avg('online');
             $currentValues = ServerStats::where('server_id', $server->id)->whereBetween('created_at', [$startAt, $endAt])->avg('online');
-            $values[] = [
-                $startAt->timestamp * 1000, (int)$currentValues
-            ];
+            $values[] = [$startAt->timestamp * 1000, (int)$currentValues];
 
             $date = $date->addMinutes($minutes);
         }

@@ -19,14 +19,14 @@ class CacheCharts implements ShouldQueue
      * @var int
      */
     private int $serverId;
-    private int $days;
+    private string $days;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(int $serverId, int $days)
+    public function __construct(int $serverId, string $days)
     {
         $this->serverId = $serverId;
         $this->days = $days;
@@ -40,6 +40,10 @@ class CacheCharts implements ShouldQueue
     public function handle()
     {
         $server = Server::find($this->serverId);
-        ServerController::calcCharts($server, $this->days, true);
+        if ($this->days === 'all') {
+            ServerController::calcAll($server, true);
+        } else {
+            ServerController::calcCharts($server, $this->days, true);
+        }
     }
 }

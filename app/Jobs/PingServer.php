@@ -53,24 +53,17 @@ class PingServer implements ShouldQueue
             $online = $status['players']['online'] ?? 0;
             $max = $status['players']['max'] ?? 0;
             $isOnline = true;
-        } catch (Exception $ignored) {
+        } catch (Exception) {
         }
 
-        ServerStats::create([
-            'server_id' => $server->id,
-            'online' => $online,
-        ]);
+        ServerStats::create(['server_id' => $server->id, 'online' => $online,]);
 
-        $server->update([
-            'is_online' => $isOnline,
-            'max_players' => $max == 0 ? $server->max_players : $max,
-            'online_record_players' => max($online, $server->online_record_players),
-            'online_record_players_at' => $online > $server->online_record_players ? now() : $server->online_record_players_at,
-        ]);
+        $server->update(['is_online' => $isOnline, 'max_players' => $max == 0 ? $server->max_players : $max, 'online_record_players' => max($online, $server->online_record_players), 'online_record_players_at' => $online > $server->online_record_players ? now() : $server->online_record_players_at,]);
 
         foreach (ServerController::DAYS as $day) {
             CacheCharts::dispatch($server->id, $day);
         }
+        CacheCharts::dispatch($server->id, 'all');
     }
 
 }

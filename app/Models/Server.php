@@ -68,10 +68,10 @@ class Server extends Model
     /**
      * Get cache key
      *
-     * @param int $days
+     * @param string $days
      * @return string
      */
-    function getCacheKey(int $days): string
+    function getCacheKey(string $days): string
     {
         return "{$this->id}_days_$days";
     }
