@@ -31,7 +31,7 @@ class Server extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ip', 'port', 'icon', 'description', 'version', 'is_online', 'online_record_players', 'max_players', 'name', 'online_record_players_at'
+        'ip', 'port', 'icon', 'description', 'version', 'is_online', 'online_record_players', 'max_players', 'name', 'online_record_players_at', 'deleted'
     ];
 
     protected $dates = [

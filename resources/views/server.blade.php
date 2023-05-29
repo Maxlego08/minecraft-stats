@@ -15,8 +15,12 @@
                 </div>
                 <div class="header-online">
                     <div class="header-online-top">
-                        <span class="server-status" type="{{ $server->is_online ? "up" : "down" }}"></span>
-                        <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
+                        @if ($server->deleted)
+                            <span class="server-ip-online">Serveur fermé</span>
+                        @else
+                            <span class="server-status" type="{{ $server->is_online ? "up" : "down" }}"></span>
+                            <span class="server-ip-online">{{ $server->currentOnline() }}/{{ $server->max_players }}</span>
+                        @endif
                     </div>
                     <div class="header-online-bottom">
                         <span>Record: {{ $server->online_record_players }} ({{ format_date($server->online_record_players_at, true) }})</span>
@@ -38,10 +42,14 @@
                 <div class="card-buttons">
                     <span class="button button-selected" id="global-2"
                           data-url="{{ route('stats.global', ['server' => $server,  'days' => 2]) }}">48 heures</span>
-                    <span class="button" id="global-7" data-url="{{ route('stats.global', ['server' => $server,  'days' => 7]) }}">7 jours</span>
-                    <span class="button" id="global-14" data-url="{{ route('stats.global', ['server' => $server,  'days' => 14]) }}">14 jours</span>
-                    <span class="button" id="global-30" data-url="{{ route('stats.global', ['server' => $server,  'days' => 30]) }}">30 jours</span>
-                    <span class="button" id="global-all" data-url="{{ route('stats.global', ['server' => $server,  'days' => 'all']) }}">Depuis le début</span>
+                    <span class="button" id="global-7"
+                          data-url="{{ route('stats.global', ['server' => $server,  'days' => 7]) }}">7 jours</span>
+                    <span class="button" id="global-14"
+                          data-url="{{ route('stats.global', ['server' => $server,  'days' => 14]) }}">14 jours</span>
+                    <span class="button" id="global-30"
+                          data-url="{{ route('stats.global', ['server' => $server,  'days' => 30]) }}">30 jours</span>
+                    <span class="button" id="global-all"
+                          data-url="{{ route('stats.global', ['server' => $server,  'days' => 'all']) }}">Depuis le début</span>
                 </div>
             </div>
         </div>
