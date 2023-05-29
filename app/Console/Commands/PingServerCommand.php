@@ -31,7 +31,9 @@ class PingServerCommand extends Command
     {
         $servers = Server::all();
         foreach ($servers as $server) {
-            PingServer::dispatch($server->id);
+            if (!$server->deleted) {
+                PingServer::dispatch($server->id);
+            }
         }
     }
 }
